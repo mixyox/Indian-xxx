@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .video-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            cursor: pointer;
+        }
+        
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .floating-button {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to right, #FF416C, #FF4B2B);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            transform: translateY(100%);
+            animation: slideUp 0.5s forwards 1s;
+            z-index: 1000;
+            border: none;
+            width: 100%;
+        }
+        
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+            }
+        }
+        
+        .floating-button:hover {
+            background: linear-gradient(to right, #FF4B2B, #FF416C);
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container" id="videoContainer">
+        <video autoplay muted playsinline>
+            <source src="https://great-kandace-margsf-8c736053.koyeb.app/stream/398?hash=4fc987" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <button class="floating-button" id="openButton">Open Now</button>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const openButton = document.getElementById('openButton');
+            const videoContainer = document.getElementById('videoContainer');
+            
+            // Function to open the link
+            function openLink() {
+                window.open('https://winzo.onelink.me/gu8K/yyyneu6y', '_blank');
+            }
+            
+            // Make entire video area clickable
+            videoContainer.addEventListener('click', openLink);
+            
+            // Button click handler
+            openButton.addEventListener('click', openLink);
+            
+            // Auto-play the video with muted audio (more likely to work)
+            const video = document.querySelector('video');
+            video.play().catch(e => {
+                console.log("Autoplay prevented:", e);
+                // Fallback: Show a play button if needed
+            });
+        });
+    </script>
+</body>
+</html>
